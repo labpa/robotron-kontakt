@@ -22,8 +22,7 @@ contactForm.onsubmit = async (ev)=>{
 		.from('Kontakte')
 		.insert([
 			submitData
-		])
-	.select();
+		]);
 	contactForm.reset();
 	contactForm.onsubmit = tmp;
 	submitButton.disabled = false;
