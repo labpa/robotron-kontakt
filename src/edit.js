@@ -4,11 +4,7 @@ forceLogin();
 
 const url = new URL(window.location);
 const id = url.searchParams.get("id");
-
-let { data, error } = await supabase
-	.from('Kontakte')
-	.select('*')
-	.eq('id' , id);
+let { data, error } = await supabase.from('Kontakte').select('*').eq('id' , id);
 
 if (error) {
 	const elem = document.querySelector("form");
