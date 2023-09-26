@@ -21,14 +21,14 @@ const navbar = document.querySelector("nav#navbar");
 const linkInput = function(){
 	const elem = document.createElement("a");
 	elem.innerText = "Neuer Kontakt";
-	elem.setAttribute("href", "./insert.html");
+	elem.setAttribute("href", "./index.html");
 	return elem;
 }();
 
-const linkIndex = function(){
+const linkKontakte = function(){
 	const elem = document.createElement("a");
 	elem.innerText = "Kontakte";
-	elem.setAttribute("href", "./index.html");
+	elem.setAttribute("href", "./kontakte.html");
 	return elem;
 
 }();
@@ -54,6 +54,6 @@ const linkLogout = function(){
 
 navbar.appendChild(linkInput);
 if (session.data.session) {
-	navbar.appendChild(linkIndex);
+	navbar.appendChild(linkKontakte);
 }
 navbar.appendChild(session.data.session ? linkLogout : linkLogin);
