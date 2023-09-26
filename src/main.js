@@ -11,7 +11,7 @@ const deleteRow = async function(id) {
 }
 
 const editRow = function(id) {
-	console.log(id);
+	window.open("./edit.html?id=" + id, "_self");
 }
 
 let { data, error } = await supabase.from('Kontakte').select('*');
