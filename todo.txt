@@ -1,0 +1,13 @@
+todo
+	- creator
+	- bissl design/css
+	- js modularisieren/aufräumen
+	- navigationsleiste
+	- suche und filter
+	- pflichtenheft noch mal checken
+	
+persp.
+	- tests
+	- dokumentation
+	- übergabeprotokoll???
+	- ...
