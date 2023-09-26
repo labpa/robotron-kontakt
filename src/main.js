@@ -1,9 +1,6 @@
-import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
+import { supabase, forceLogin } from "./util.js";
 
-const supabase = createClient(
-	'https://lqgnahenxkmdkenuxbxw.supabase.co',
-	'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxxZ25haGVueGttZGtlbnV4Ynh3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTUyMDg0NDksImV4cCI6MjAxMDc4NDQ0OX0.XrMlC1LGwKXDw0yg1AqKjzsiUdV-XLsfLEfdSq7gJh0',
-);
+forceLogin();
 
 const deleteRow = async function(id) {
 	const { error } = await supabase.from('Kontakte').delete().eq('id', id);
@@ -21,11 +18,6 @@ if (data.length === 0) {
 } else {
 	const table = document.createElement("table");
 	const thead = document.createElement("tr");
-	for (const key in data[0]) {
-		const th = document.createElement("th");
-		th.appendChild(document.createTextNode(key));
-		thead.appendChild(th);
-	}
 	
 	const thLöschen = document.createElement("th");
 	thLöschen.appendChild(document.createTextNode("Löschen"));
@@ -35,16 +27,16 @@ if (data.length === 0) {
 	thBearbeiten.appendChild(document.createTextNode("Bearbeiten"));
 	thead.appendChild(thBearbeiten);
 	
+	for (const key in data[0]) {
+		const th = document.createElement("th");
+		th.appendChild(document.createTextNode(key));
+		thead.appendChild(th);
+	}
 	table.appendChild(thead);
-	
-	
+
 	for (const row of data) {
 		const tr = document.createElement("tr");
-		for (const cell in row) {
-			const td = document.createElement("td");
-			td.appendChild(document.createTextNode(row[cell]));
-			tr.appendChild(td);
-		}
+		
 		const buttonDelete = document.createElement("button");
 		buttonDelete.appendChild(document.createTextNode("Löschen"));
 		buttonDelete.addEventListener("click", ()=>deleteRow(row.id));
@@ -59,6 +51,11 @@ if (data.length === 0) {
 		tdBearbeiten.appendChild(buttonBearbeiten);
 		tr.appendChild(tdBearbeiten);
 		
+		for (const cell in row) {
+			const td = document.createElement("td");
+			td.appendChild(document.createTextNode(row[cell]));
+			tr.appendChild(td);
+		}
 		table.appendChild(tr);
 	}
 	div.appendChild(table);
