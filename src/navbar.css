@@ -1,19 +1,21 @@
 .navbar {
   width: 100%;
-  background-color: #555;
+  background-color:var(--first-color);
   overflow: auto;
+  border-bottom: solid 1px var(--second-color);
+  border-top:solid 1px var(--signal-color);
 }
 
 .navbar a {
   float: left;
   padding: 12px;
-  color: white;
+  color: var(--signal-color);
   text-decoration: none;
   font-size: 17px;
 }
 
 .navbar a:hover {
-  background-color: #000;
+  background-color: #6dcf18;
 }
 
 .active {

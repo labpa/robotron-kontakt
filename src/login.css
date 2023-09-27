@@ -1,18 +1,4 @@
-*{
-    box-sizing: border-box;
-}
-:root{
-    --first-color: #e7eaf6;
-    --second-color: #a2a8d3;
-    --third-color: #38598b;
-    --fourth-color: #113f67;
-    --input-bgcolor: #f2f2f2;
-}
 
-
-body{
-    background-color: var(--first-color);
-}
 
 .login-page {
     width: 400px;
@@ -37,6 +23,7 @@ body{
     margin: 0 0 15px;
     padding: 1rem;
     font-size: 0.9rem;
+	box-sizing: border-box;
 }
 .form button {
     text-transform: uppercase;

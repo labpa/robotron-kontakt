@@ -12,18 +12,22 @@ if (data.length === 0) {
 	div.appendChild(document.createTextNode("Keine Daten"));
 } else {
 	const table = document.createElement("table");
-	const thead = document.createElement("tr");
+	const thead = document.createElement("thead");
+	const trhead = document.createElement("tr");
 	
 	const thView = document.createElement("th");
 	thView.appendChild(document.createTextNode("Ansehen"));
-	thead.appendChild(thView);
+	trhead.appendChild(thView);
 	
 	for (const key in data[0]) {
 		const th = document.createElement("th");
 		th.appendChild(document.createTextNode(key));
-		thead.appendChild(th);
+		trhead.appendChild(th);
 	}
 	table.appendChild(thead);
+	thead.appendChild(trhead);
+
+	const tbody = document.createElement("tbody");
 
 	for (const row of data) {
 		const tr = document.createElement("tr");
@@ -37,10 +41,12 @@ if (data.length === 0) {
 				
 		for (const cell in row) {
 			const td = document.createElement("td");
+			td.dataset.label = cell;
 			td.appendChild(document.createTextNode(row[cell]));
 			tr.appendChild(td);
 		}
-		table.appendChild(tr);
+		tbody.appendChild(tr);
 	}
+	table.appendChild(tbody);
 	div.appendChild(table);
 }
