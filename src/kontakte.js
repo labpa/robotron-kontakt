@@ -2,11 +2,6 @@ import { supabase, forceLogin } from "./util.js";
 
 forceLogin();
 
-const deleteRow = async function(id) {
-	const { error } = await supabase.from('Kontakte').delete().eq('id', id);
-	location.reload();
-}
-
 const editRow = function(id) {
 	window.open("./edit.html?id=" + id, "_self");
 }
@@ -19,13 +14,9 @@ if (data.length === 0) {
 	const table = document.createElement("table");
 	const thead = document.createElement("tr");
 	
-	const thLöschen = document.createElement("th");
-	thLöschen.appendChild(document.createTextNode("Löschen"));
-	thead.appendChild(thLöschen);
-	
-	const thBearbeiten = document.createElement("th");
-	thBearbeiten.appendChild(document.createTextNode("Bearbeiten"));
-	thead.appendChild(thBearbeiten);
+	const thView = document.createElement("th");
+	thView.appendChild(document.createTextNode("Ansehen"));
+	thead.appendChild(thView);
 	
 	for (const key in data[0]) {
 		const th = document.createElement("th");
@@ -37,20 +28,13 @@ if (data.length === 0) {
 	for (const row of data) {
 		const tr = document.createElement("tr");
 		
-		const buttonDelete = document.createElement("button");
-		buttonDelete.appendChild(document.createTextNode("Löschen"));
-		buttonDelete.addEventListener("click", ()=>deleteRow(row.id));
-		const tdDelete = document.createElement("td");
-		tdDelete.appendChild(buttonDelete);
-		tr.appendChild(tdDelete);
-		
-		const buttonBearbeiten = document.createElement("button");
-		buttonBearbeiten.appendChild(document.createTextNode("Bearbeiten"));
-		buttonBearbeiten.addEventListener("click", ()=>editRow(row.id));
-		const tdBearbeiten = document.createElement("td");
-		tdBearbeiten.appendChild(buttonBearbeiten);
-		tr.appendChild(tdBearbeiten);
-		
+		const buttonView = document.createElement("button");
+		buttonView.appendChild(document.createTextNode("View"));
+		buttonView.addEventListener("click", ()=>window.open("./view.html?id=" + row.id, "_self"));
+		const tdView = document.createElement("td");
+		tdView.appendChild(buttonView);
+		tr.appendChild(tdView);
+				
 		for (const cell in row) {
 			const td = document.createElement("td");
 			td.appendChild(document.createTextNode(row[cell]));

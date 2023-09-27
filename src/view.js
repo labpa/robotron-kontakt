@@ -1,6 +1,6 @@
 import { supabase, forceLogin } from "./util.js";
-
 forceLogin();
+
 
 const btnDelete = function(){
 	const elem = document.createElement("button");
