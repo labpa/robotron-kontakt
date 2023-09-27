@@ -41,18 +41,6 @@
 .form button:hover,.form button:active,.form button:focus {
     background: var(--third-color);
 }
-.form .message {
-    margin: 15px 0 0;
-    color: var(--second-color);
-    font-size: 0.8rem;
-}
-.form .message a {
-    color: var(--third-color);
-    text-decoration: none;
-}
-.form .register-form {
-    display: none;
-}
 .form .anmeldestatus {
 	padding-top : 1.5rem;
 }

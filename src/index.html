@@ -5,26 +5,26 @@
 	<script src="index.js" type="module" ></script>
 	<link rel="stylesheet" href="./general.css" />
 	<link rel="stylesheet" href="./navbar.css" />
+	<link rel="stylesheet" href="./formular.css" />
 </head>
 
 <body>
 	<nav id="navbar"></nav>
 	<h1>Neuen Kontakt erstellen</h1>
 
-	<form id="form-insert">	
+	<form class="form" id="form-insert">	
 
-		<div> 
-			<input type="reset" />
-		</div>
-	
-		<div>
-			<label for="Name">Name: </label>
-			<input type="text" id="Name" name="Name" required />
-		</div>
 		
-		<div>
-			<label for="Vorname">Vorname: </label>
-			<input type="text" id="Vorname" name="Vorname" required />
+	
+		<div class="row" >
+			<div>
+				<label for="Name">Name: </label>
+				<input type="text" id="Name" name="Name" required />
+			</div>
+			<div>		
+				<label for="Vorname">Vorname: </label>
+				<input type="text" id="Vorname" name="Vorname" required />
+			</div>	
 		</div>
 		
 		<div>
@@ -32,24 +32,28 @@
 			<input type="text" id="Straße" name="Straße" required />
 		</div>
 		
-		<div>
-			<label for="PLZ">PLZ: </label>
-			<input type="text" id="PLZ" name="PLZ" required />
+		<div class="row" >
+			<div>
+				<label for="PLZ">PLZ: </label>
+				<input type="text" id="PLZ" name="PLZ" required />
+			</div>
+			
+			<div>
+				<label for="Ort">Ort: </label>
+				<input type="text" id="Ort" name="Ort" required />
+			</div>
 		</div>
 		
-		<div>
-			<label for="Ort">Ort: </label>
-			<input type="text" id="Ort" name="Ort" required />
-		</div>
-		
-		<div>
-			<label for="Festnetz">Festnetz: </label>
-			<input type="tel" id="Festnetz" name="Festnetz" />
-		</div>
-		
-		<div>
-			<label for="Mobiltelefon">Mobiltelefon: </label>
-			<input type="tel" id="Mobiltelefon" name="Mobiltelefon" />
+		<div class="row" >
+			<div>
+				<label for="Festnetz">Festnetz: </label>
+				<input type="tel" id="Festnetz" name="Festnetz" />
+			</div>
+			
+			<div>
+				<label for="Mobiltelefon">Mobiltelefon: </label>
+				<input type="tel" id="Mobiltelefon" name="Mobiltelefon" />
+			</div>
 		</div>
 		
 		<div>
@@ -71,26 +75,24 @@
 			<label for="Umfang">Zeitlicher Umfang: </label>
 			<input type="text" id="Umfang" name="Umfang" />
 		</div>
+			<legend>Zustellung:</legend>
+		<div class="radioContainer" >
+			
 		
-		<div>
-			<fieldset>
-				<legend>Zustellung:</legend>
+			<div class="radioButton" >
+				<input type="radio" id="Zustellung-E-Mail" name="Zustellung_Angebot" value="E-Mail" checked />
+				<label for="Zustellung-E-Mail">E-Mail</label>
+			</div>
 
-				<div>
-					<input type="radio" id="Zustellung-E-Mail" name="Zustellung_Angebot" value="E-Mail" checked />
-					<label for="Zustellung-E-Mail">E-Mail</label>
-				</div>
+			<div class="radioButton" >
+				<input type="radio" id="Zustellung-Brief" name="Zustellung_Angebot" value="Brief" />
+				<label for="Zustellung-Brief">Brief</label>
+			</div>
 
-				<div>
-					<input type="radio" id="Zustellung-Brief" name="Zustellung_Angebot" value="Brief" />
-					<label for="Zustellung-Brief">Brief</label>
-				</div>
-
-				<div>
-					<input type="radio" id="Zustellung-Abholung" name="Zustellung_Angebot" value="Abholung" />
-					<label for="Zustellung-Abholung">Abholung</label>
-				</div>
-			</fieldset>
+			<div class="radioButton" >
+				<input  type="radio" id="Zustellung-Abholung" name="Zustellung_Angebot" value="Abholung" />
+				<label for="Zustellung-Abholung">Abholung</label>
+			</div>
 		</div>
 		
 		<div>
@@ -102,8 +104,10 @@
 			<label for="Bemerkungen">Bemerkungen: </label>
 			<textarea id="Bemerkungen" name="Bemerkungen" rows="5" cols="83"></textarea>
 		</div>
-
-		<button type="submit" name="submit" value="1" id="btn-submit">Absenden</button>
+		<div class="buttonContainer"> 
+			<button type="reset" >Reset</button>
+			<button type="submit" name="submit" value="1" id="btn-submit">Absenden</button>
+		</div>
 	</form>
 
 </body>
