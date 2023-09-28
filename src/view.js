@@ -1,4 +1,4 @@
-import { supabase, forceLogin } from "./util.js";
+import { supabase, forceLogin, createTable } from "./util.js";
 forceLogin();
 
 
@@ -23,17 +23,8 @@ const url = new URL(window.location);
 const id = url.searchParams.get("id");
 let { data, error } = await supabase.from('Kontakte').select('*').eq('id', id);
 
-let container = document.querySelector("#container");
-if (data.length === 0) {
-	container.appendChild(document.createTextNode("Keine Daten"));
-} else {
-	const list = document.createElement("ul");
-	for (const key in data[0]) {
-		const li = document.createElement("li");
-		li.innerText = key + ": " + data[0][key];
-		list.appendChild(li);
-	}
-	container.appendChild(list);
-	container.appendChild(btnDelete);
-	container.appendChild(btnEdit);
-}
+let container = document.querySelector("#buttonContainer");
+container.appendChild(btnDelete);
+container.appendChild(btnEdit);
+
+createTable(data, false);

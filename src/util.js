@@ -1,4 +1,4 @@
-export { supabase, forceLogin }
+export { supabase, forceLogin, createTable }
 
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
 	
@@ -59,4 +59,64 @@ const session = await supabase.auth.getSession();
 		navbar.appendChild(linkKontakte);
 	}
 	navbar.appendChild(session.data.session ? linkLogout : linkLogin);
+}
+
+
+// Creates a table out of the data from a SQL-Supabase-query in the "div#container"
+function createTable(data, isWithViewButton=true) {
+	let div = document.querySelector("#container");
+	if (data.length === 0) {
+		div.appendChild(document.createTextNode("Keine Daten"));
+	} else {
+		const table = document.createElement("table");
+		createTableHead(data, table, isWithViewButton);
+		createTableBody(data, table, isWithViewButton);
+		div.appendChild(table);
+	}
+}
+
+// helper functions for createTable()
+function createTableHead(data, table, isWithViewButton) {
+	const thead = document.createElement("thead");
+	const trhead = document.createElement("tr");
+	const thView = document.createElement("th");
+	if (isWithViewButton) {
+		thView.appendChild(document.createTextNode("Ansehen"));
+		trhead.appendChild(thView);
+	}
+	
+	for (const key in data[0]) {
+		const th = document.createElement("th");
+		th.appendChild(document.createTextNode(key));
+		trhead.appendChild(th);
+	}
+	table.appendChild(thead);
+	thead.appendChild(trhead);
+}
+
+function createTableBody(data, table, isWithViewButton) {
+	const tbody = document.createElement("tbody");
+	for (const row of data) {
+		const tr = document.createElement("tr");
+		
+		if (isWithViewButton) {
+			const buttonView = document.createElement("button");
+			buttonView.classList.add("smallButton");
+			buttonView.appendChild(document.createTextNode("Details"));
+			buttonView.addEventListener("click", ()=>window.open("./view.html?id=" + row.id, "_self"));
+			const tdView = document.createElement("td");
+			tdView.appendChild(buttonView);
+			tr.appendChild(tdView);
+
+		}
+						
+		for (const cell in row) {
+			const td = document.createElement("td");
+			td.dataset.label = cell;
+			td.appendChild(document.createTextNode(row[cell]));
+			tr.appendChild(td);
+		}
+		tbody.appendChild(tr);
+	}
+	table.appendChild(tbody);
 }

@@ -16,9 +16,12 @@ loginForm.onsubmit = async (ev)=>{
 		email: formData.get("E-Mail"),
 		password: formData.get("Password"),
 	});
-	if (error != null) alert(error);
+	
 	submitButton.disabled = false;
-	location.reload();
+	if (error != null) {
+		alert(error);
+		return;
+	}
 	
 	window.open("./index.html", "_self");
 }

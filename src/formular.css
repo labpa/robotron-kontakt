@@ -15,9 +15,8 @@
     font-size: 0.9rem;
 	padding-inline: 0px;
 }
-.form input[type=radio]  {
+.form input[type=radio] {
     width: 30px;
-
 }
 .form textarea {
     outline: 0;
@@ -27,30 +26,14 @@
     font-size: 0.9rem;
 	resize: none;
 	margin-bottom: 1rem;
-	
 }
 .form button {
-    text-transform: uppercase;
-    outline: 0;
-    background: var(--fourth-color);
 	min-width: 12rem;
     width: 20%;
-    border: 0;
-    padding: 15px;
-    color: #FFFFFF;
-    font-size: 1rem;
-    -webkit-transition: all 0.3s ease;
-    transition: all 0.3s ease;
-    cursor: pointer;
 }
-
 .form .radioButton {
 	margin: 20px;
 }
-.form button:hover,.form button:active,.form button:focus {
-    background: var(--third-color);
-}
-
 .radioContainer {
 	display: flex;
 	justify-content: space-between;
@@ -59,14 +42,12 @@
 	font-size: 0.9rem;
 	width: 100%;
 }
-
 .buttonContainer {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 	flex-direction: row-reverse;
 }
-
 .row {
 	display: flex;
 	justify-content: space-between;
@@ -74,7 +55,6 @@
 	gap: 1rem;
 	justify-items: stretch;
 }
-
 .row div {
 	width: 100%;
 	min-width: 20%;

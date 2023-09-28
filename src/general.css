@@ -8,6 +8,15 @@
     --input-bgcolor: #f2f2f2;
 }
 
+@font-face {
+	
+}
+
+html * {
+	font-family: verdana, sans-serif;
+	color: black;
+}
+
 body{
     background-color: #fffff;
 }
@@ -16,4 +25,20 @@ h1 {
 	color: var(--signal-color);
 	text-align: center;
 	
+}
+.form button {
+    text-transform: uppercase;
+    outline: 0;
+    background: var(--fourth-color);
+    width: 100%;
+    border: 0;
+    padding: 15px;
+    color: #FFFFFF;
+    font-size: 1rem;
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+.form button:hover,.form button:active,.form button:focus {
+    background: var(--third-color);
 }
