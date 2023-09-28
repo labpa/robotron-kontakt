@@ -1,23 +1,25 @@
 import { supabase, forceLogin, createTable } from "./util.js";
 
 forceLogin();
-let { data, error } = await supabase.from('Kontakte').select('*');
-let searchForm = document.querySelector("form#formSearch");
+
+const { data, error } = await supabase.from('Kontakte').select('*');
+const searchForm = document.querySelector("form#formSearch");
 searchForm.onsubmit = (ev) => {
 	ev.preventDefault();
-	
-	let searchInput = document.querySelector("input#searchInput").value.toLowerCase().split(" ");
-	let filteredData = data.filter((row) => {
-		let match = true;
-		for (const cell in row){
-			for (const n in searchInput) {
-				if (String(row[cell]).toLowerCase().includes(searchInput[n])) {
-					// todo
-				}
-			}
-		}
-		return match;
-	});
+	let filteredData = data;
+	const searchInput = document.querySelector("input#searchInput").value.toLowerCase().split(" ");
+	for (const i in searchInput) {
+    	const word = searchInput[i].trim(); 
+    	filteredData = filteredData.filter(row => {
+            for (const i in row){
+            	const cell = String(row[i]).toLowerCase();
+            	if (cell.includes(word)) {
+                	return true;
+            	}
+            }
+            return false;
+    	});
+	}
 	createTable(filteredData);
 }
 
