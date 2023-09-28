@@ -66,11 +66,13 @@ const session = await supabase.auth.getSession();
 function createTable(data, isWithViewButton=true) {
 	let div = document.querySelector("#container");
 	if (data.length === 0) {
+		div.innerHTML = "";
 		div.appendChild(document.createTextNode("Keine Daten"));
 	} else {
 		const table = document.createElement("table");
 		createTableHead(data, table, isWithViewButton);
 		createTableBody(data, table, isWithViewButton);
+		div.innerHTML = "";
 		div.appendChild(table);
 	}
 }

@@ -7,18 +7,12 @@
 	--signal-color: #004177;
     --input-bgcolor: #f2f2f2;
 }
-
-@font-face {
-	
-}
-
 html * {
 	font-family: verdana, sans-serif;
 	color: black;
 }
-
 body{
-    background-color: #fffff;
+    background-color: #FFFFFF;
 }
 h1 {
 	font-weight: 400;
