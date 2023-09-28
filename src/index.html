@@ -13,9 +13,6 @@
 	<h1>Neuen Kontakt erstellen</h1>
 
 	<form class="form" id="form-insert">	
-
-		
-	
 		<div class="row" >
 			<div>
 				<label for="Name">Name: </label>
@@ -37,7 +34,6 @@
 				<label for="PLZ">PLZ: </label>
 				<input type="text" id="PLZ" name="PLZ" required />
 			</div>
-			
 			<div>
 				<label for="Ort">Ort: </label>
 				<input type="text" id="Ort" name="Ort" required />
@@ -75,20 +71,17 @@
 			<label for="Umfang">Zeitlicher Umfang: </label>
 			<input type="text" id="Umfang" name="Umfang" />
 		</div>
-			<legend>Zustellung:</legend>
-		<div class="radioContainer" >
-			
 		
+		<legend>Zustellung:</legend>
+		<div class="radioContainer" >
 			<div class="radioButton" >
 				<input type="radio" id="Zustellung-E-Mail" name="Zustellung_Angebot" value="E-Mail" checked />
 				<label for="Zustellung-E-Mail">E-Mail</label>
 			</div>
-
 			<div class="radioButton" >
 				<input type="radio" id="Zustellung-Brief" name="Zustellung_Angebot" value="Brief" />
 				<label for="Zustellung-Brief">Brief</label>
 			</div>
-
 			<div class="radioButton" >
 				<input  type="radio" id="Zustellung-Abholung" name="Zustellung_Angebot" value="Abholung" />
 				<label for="Zustellung-Abholung">Abholung</label>
@@ -104,12 +97,11 @@
 			<label for="Bemerkungen">Bemerkungen: </label>
 			<textarea id="Bemerkungen" name="Bemerkungen" rows="5" cols="83"></textarea>
 		</div>
+		
 		<div class="buttonContainer"> 
-			<button type="reset" >Reset</button>
 			<button type="submit" name="submit" value="1" id="btn-submit">Absenden</button>
+			<button type="reset" >Reset</button>
 		</div>
 	</form>
-
 </body>
-
 </html>

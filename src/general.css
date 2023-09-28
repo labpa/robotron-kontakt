@@ -11,3 +11,9 @@
 body{
     background-color: #fffff;
 }
+h1 {
+	font-weight: 400;
+	color: var(--signal-color);
+	text-align: center;
+	
+}

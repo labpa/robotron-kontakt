@@ -45,8 +45,9 @@ if (error) {
 			.update(submitData)
 			.eq('id', id);
 
-		contactForm.reset();
 		contactForm.onsubmit = tmp;
 		submitButton.disabled = false;
+		
+		window.open("./kontakte.html", "_self");
 	}
 }

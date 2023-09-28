@@ -19,4 +19,6 @@ loginForm.onsubmit = async (ev)=>{
 	if (error != null) alert(error);
 	submitButton.disabled = false;
 	location.reload();
+	
+	window.open("./index.html", "_self");
 }
