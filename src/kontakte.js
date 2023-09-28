@@ -1,10 +1,9 @@
-import { supabase, forceLogin, createTable } from "./util.js";
+import { createTable, forceLogin, supabase } from "./util.js";
 
 forceLogin();
-
 const { data, error } = await supabase.from('Kontakte').select('*');
-const searchForm = document.querySelector("form#formSearch");
-searchForm.onsubmit = (ev) => {
+createTable(data);
+document.querySelector("form#formSearch").onsubmit = (ev) => {
 	ev.preventDefault();
 	let filteredData = data;
 	const searchInput = document.querySelector("input#searchInput").value.toLowerCase().split(" ");
@@ -22,5 +21,3 @@ searchForm.onsubmit = (ev) => {
 	}
 	createTable(filteredData);
 }
-
-createTable(data);
