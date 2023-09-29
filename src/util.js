@@ -1,4 +1,4 @@
-export { supabase, forceLogin, createTable , csv }
+export { supabase, forceLogin, createTable , csv , richtigesDatum, fixALotOfShit }
 
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
 	
@@ -100,7 +100,6 @@ function createTableBody(data, table, isWithViewButton) {
 	const tbody = document.createElement("tbody");
 	for (const row of data) {
 		const tr = document.createElement("tr");
-		
 		if (isWithViewButton) {
 			const buttonView = document.createElement("button");
 			buttonView.classList.add("smallButton");
@@ -111,17 +110,10 @@ function createTableBody(data, table, isWithViewButton) {
 			tr.appendChild(tdView);
 
 		}
-						
-		for (const cell in row) {
-			let cellContent;
-			if (row[cell] !== null && (cell==="created_at" || cell==="updated_at" || cell === "Beratungstermin" || cell === "Gewuenschter_Starttermin")) {
-				cellContent = richtigesDatum(row[cell]);
-			} else {
-				cellContent = row[cell];
-			}
-			
+		for (const key in row) {
+			let cellContent = row[key];
 			const td = document.createElement("td");
-			td.dataset.label = cell;
+			td.dataset.label = key;
 			td.appendChild(document.createTextNode(cellContent));
 
 			tr.appendChild(td);
@@ -132,6 +124,9 @@ function createTableBody(data, table, isWithViewButton) {
 }
 //time change
 function richtigesDatum (scheißdatum) {
+	if (scheißdatum === null) {
+		return null;
+	}
 	const date = new Date(scheißdatum);
 	const deutschesDatum =
 		wochentag(date.getDay())+
@@ -198,4 +193,14 @@ function csv(data, delim=";") {
 	}
 	const result = header + "\n" +lines.join("\n");
 	return result;
+}
+
+const fixALotOfShit = data => {
+	return data.map(record => {
+		record.created_at = richtigesDatum(record.created_at);
+		record.updated_at = richtigesDatum(record.updated_at);
+		record.Beratungstermin = richtigesDatum(record.Beratungstermin);
+		record.Gewuenschter_Starttermin = richtigesDatum(record.Gewuenschter_Starttermin);
+		return record;
+	});
 }

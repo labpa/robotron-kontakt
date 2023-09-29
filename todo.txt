@@ -1,8 +1,9 @@
 todo
-	- bissl design/css
-	- suche und filter
 	- pflichtenheft noch mal checken
-	
+	- Creator email	anzeigen
+	- xml export
+	- ma onboarding/ nutzerverwaltung
+
 persp.
 	- tests
 	- dokumentation

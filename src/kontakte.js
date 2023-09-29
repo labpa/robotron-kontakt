@@ -1,8 +1,9 @@
-import { createTable, forceLogin, supabase, csv } from "./util.js";
+import { createTable, forceLogin, supabase, csv, richtigesDatum, fixALotOfShit } from "./util.js";
 
 forceLogin();
-const { data, error } = await supabase.from("Kontakte").select("*");
+let { data, error } = await supabase.from("Kontakte").select("*");
 data.sort((a,b) => a.id - b.id);
+data = fixALotOfShit(data);
 createTable(data);
 
 let angezeigeData = data;
