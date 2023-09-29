@@ -114,9 +114,9 @@ function createTableBody(data, table, isWithViewButton) {
 						
 		for (const cell in row) {
 			let cellContent;
-			if(cell==="created_at" || cell==="updated_at"){
+			if (row[cell] !== null && (cell==="created_at" || cell==="updated_at" || cell === "Beratungstermin" || cell === "Gewuenschter_Starttermin")) {
 				cellContent = richtigesDatum(row[cell]);
-			}else{
+			} else {
 				cellContent = row[cell];
 			}
 			
@@ -138,14 +138,21 @@ function richtigesDatum (scheißdatum) {
 		" "+leadingZero(String(date.getDate()))+
 		"."+leadingZero(String(date.getMonth()+1))+
 		"."+String(date.getFullYear())+
-		" "+leadingZero(String(date.getHours()))+
-		":"+leadingZero(String(date.getMinutes()))+
-		" Uhr";
+		includesTime(date, scheißdatum.length);
 	
 	return deutschesDatum;
  }
 function leadingZero(string) {
 	return string.length < 2 ? "0" + string : string;
+}
+function includesTime(date, length) {
+	if (length > 10) {
+		return " "+leadingZero(String(date.getHours()))+
+		":"+leadingZero(String(date.getMinutes()))+
+		" Uhr";
+	} else {
+		return "";
+	}
 }
  
 function wochentag(n) {
