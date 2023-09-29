@@ -181,7 +181,7 @@ function csv(data, delim=";") {
 	const lines = [];
 	for (const i in data) {
 		const record = data[i];
-		values = [];
+		const values = [];
 		for (const key in record) {
 			const value = record[key];
 			values.push("\"" + String(value).replaceAll("\"", "\"\"") + "\"");

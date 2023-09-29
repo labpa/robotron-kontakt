@@ -1,9 +1,11 @@
-import { createTable, forceLogin, supabase } from "./util.js";
+import { createTable, forceLogin, supabase, csv } from "./util.js";
 
 forceLogin();
 const { data, error } = await supabase.from("Kontakte").select("*");
 data.sort((a,b) => a.id - b.id);
 createTable(data);
+
+let angezeigeData = data;
 document.querySelector("form#formSearch").onsubmit = ev => {
     ev.preventDefault();
     let filteredData = data;
@@ -21,5 +23,17 @@ document.querySelector("form#formSearch").onsubmit = ev => {
         });
     }
     createTable(filteredData);
+	angezeigeData = filteredData;
+}
+
+
+document.querySelector("button#csv").onclick = ev => {
+	const link = document.createElement("a");
+	const BOM = new Uint8Array([0xEF,0xBB,0xBF]);
+	const file = new Blob([ BOM, csv(angezeigeData) ]);
+	link.href = URL.createObjectURL(file);
+	link.download = "kontakte.csv";
+	link.click();
+	URL.revokeObjectURL(link.href);
 }
 
