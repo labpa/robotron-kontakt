@@ -1,4 +1,4 @@
-export { supabase, forceLogin, createTable }
+export { supabase, forceLogin, createTable , csv }
 
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
 	
@@ -113,12 +113,82 @@ function createTableBody(data, table, isWithViewButton) {
 		}
 						
 		for (const cell in row) {
+			let cellContent;
+			if(cell==="created_at" || cell==="updated_at"){
+				cellContent = richtigesDatum(row[cell]);
+			}else{
+				cellContent = row[cell];
+			}
+			
 			const td = document.createElement("td");
 			td.dataset.label = cell;
-			td.appendChild(document.createTextNode(row[cell]));
+			td.appendChild(document.createTextNode(cellContent));
+
 			tr.appendChild(td);
 		}
 		tbody.appendChild(tr);
 	}
 	table.appendChild(tbody);
+}
+//time change
+function richtigesDatum (scheißdatum) {
+	const date = new Date(scheißdatum);
+	const deutschesDatum =
+		wochentag(date.getDay())+
+		" "+leadingZero(String(date.getDate()))+
+		"."+leadingZero(String(date.getMonth()+1))+
+		"."+String(date.getFullYear())+
+		" "+leadingZero(String(date.getHours()))+
+		":"+leadingZero(String(date.getMinutes()))+
+		" Uhr";
+	
+	return deutschesDatum;
+ }
+function leadingZero(string) {
+	return string.length < 2 ? "0" + string : string;
+}
+ 
+function wochentag(n) {
+	if(n===0){
+		return "So";
+	}
+	if(n===1){
+		return "Mo";
+	}
+	if(n===2){
+		return "Di";
+	}
+	if(n===3){
+		return "Mi";
+	}
+	if(n===4){
+		return "Do";
+	}
+	if(n===5){
+		return "Fr";
+	}
+	if(n===6){
+		return "Sa";
+	}
+}
+
+function csv(data, delim=";") {
+	let keys = [];
+	for (const key in data[0]) {
+		keys.push(key);
+	}
+	const header = keys.join(delim);
+	const lines = [];
+	for (const i in data) {
+		const record = data[i];
+		values = [];
+		for (const key in record) {
+			const value = record[key];
+			values.push("\"" + String(value).replaceAll("\"", "\"\"") + "\"");
+		}
+		const line = values.join(delim);
+		lines.push(line);
+	}
+	const result = header + "\n" +lines.join("\n");
+	return result;
 }

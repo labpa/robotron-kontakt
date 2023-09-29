@@ -2,6 +2,7 @@ import { createTable, forceLogin, supabase } from "./util.js";
 
 forceLogin();
 const { data, error } = await supabase.from("Kontakte").select("*");
+data.sort((a,b) => a.id - b.id);
 createTable(data);
 document.querySelector("form#formSearch").onsubmit = ev => {
     ev.preventDefault();
@@ -21,3 +22,4 @@ document.querySelector("form#formSearch").onsubmit = ev => {
     }
     createTable(filteredData);
 }
+

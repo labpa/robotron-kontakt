@@ -25,7 +25,8 @@ tbody td:last-child, table th:last-child {
 table th,
 table td {
 	padding: .625em;
-	text-align: center;
+	text-align: left;
+	white-space: nowrap;
 }
 table th {
 	font-size: .85em;
