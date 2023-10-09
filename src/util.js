@@ -61,6 +61,29 @@ const session = await supabase.auth.getSession();
 	navbar.appendChild(session.data.session ? linkLogout : linkLogin);
 }
 
+//Create Footer
+const footer = document.querySelector("footer#footer");
+const linkImpressum = function(){
+	const elem = document.createElement("a");
+	elem.innerText = "Impressum";
+	elem.setAttribute("href", "./impressum.html");
+	return elem;
+}();
+
+const linkDokumentation = function(){
+	const elem = document.createElement("a");
+	elem.innerText = "Dokumentation";
+	elem.setAttribute("href", "./help.html");
+	return elem;
+}();
+console.log(linkImpressum);
+footer.appendChild(linkImpressum);
+footer.appendChild(linkDokumentation);
+
+
+
+
+
 
 // Creates a table out of the data from a SQL-Supabase-query in the "div#container"
 function createTable(data, isWithViewButton=true) {

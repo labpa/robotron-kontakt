@@ -36,3 +36,10 @@ h1 {
 .form button:hover,.form button:active,.form button:focus {
     background: var(--third-color);
 }
+
+.footer{
+    text-align: center;
+    background-color: var(--first-color);
+    padding: 2rem;
+    margin-top: 3rem;
+}
