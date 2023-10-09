@@ -37,4 +37,3 @@ document.querySelector("button#csv").onclick = ev => {
 	link.click();
 	URL.revokeObjectURL(link.href);
 }
-

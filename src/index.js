@@ -17,8 +17,7 @@ contactForm.onsubmit = async (ev)=>{
 	
 	const session = await supabase.auth.getSession();
 	if (session.data.session !== null) {
-		const id = session.data.session.user.id;
-		submitData["Creator"] = id;
+		submitData["Creator"] = session.data.session.user.email;
 	}
 	
 	const { data, error } = await supabase

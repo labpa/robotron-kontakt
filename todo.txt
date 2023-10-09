@@ -1,9 +1,8 @@
 todo
 	- pflichtenheft noch mal checken
-	- Creator email	anzeigen
 	- xml export
 	- ma onboarding/ nutzerverwaltung
-
+	- supabase passwort reset 
 persp.
 	- tests
 	- dokumentation

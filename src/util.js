@@ -123,7 +123,7 @@ function createTableBody(data, table, isWithViewButton) {
 	table.appendChild(tbody);
 }
 //time change
-function richtigesDatum (scheißdatum) {
+function richtigesDatum(scheißdatum) {
 	if (scheißdatum === null) {
 		return null;
 	}
