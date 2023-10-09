@@ -1,4 +1,4 @@
-export { supabase, forceLogin, createTable , csv , richtigesDatum, fixALotOfShit }
+export { supabase, forceLogin, createTable , csv , xml, richtigesDatum, fixALotOfShit }
 
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
 	
@@ -191,8 +191,21 @@ function csv(data, delim=";") {
 		const line = values.join(delim);
 		lines.push(line);
 	}
-	const result = header + "\n" +lines.join("\n");
+	const result = header + "\n"  + lines.join("\n");
 	return result;
+}
+
+function xml(data) {
+	return "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<kontakte>\n" +
+		data.map(record => {
+			const elements = [];
+			for (const key in record) {
+				const value = String(record[key]).replace("<", "&lt;").replace(">", "&gt;")
+					.replace("&", "&amp;").replace("'", "&apos;").replace("\"", "&quot;");
+				elements.push("        <" + key + ">" + value + "</" + key + ">");
+			}
+			return "    <kontakt>\n" + elements.join("\n") + "\n    </kontakt>";
+		}).join("\n") + "</kontakte>\n";
 }
 
 const fixALotOfShit = data => {

@@ -1,4 +1,4 @@
-import { createTable, forceLogin, supabase, csv, richtigesDatum, fixALotOfShit } from "./util.js";
+import { createTable, forceLogin, supabase, csv, xml, richtigesDatum, fixALotOfShit } from "./util.js";
 
 forceLogin();
 let { data, error } = await supabase.from("Kontakte").select("*");
@@ -34,6 +34,17 @@ document.querySelector("button#csv").onclick = ev => {
 	const file = new Blob([ BOM, csv(angezeigeData) ]);
 	link.href = URL.createObjectURL(file);
 	link.download = "kontakte.csv";
+	link.click();
+	URL.revokeObjectURL(link.href);
+}
+
+
+document.querySelector("button#xml").onclick = ev => {
+    const link = document.createElement("a");
+	const BOM = new Uint8Array([0xEF,0xBB,0xBF]);
+	const file = new Blob([ BOM, xml(angezeigeData) ]);
+	link.href = URL.createObjectURL(file);
+	link.download = "kontakte.xml";
 	link.click();
 	URL.revokeObjectURL(link.href);
 }
