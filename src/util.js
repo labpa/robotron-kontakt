@@ -200,12 +200,16 @@ function xml(data) {
 		data.map(record => {
 			const elements = [];
 			for (const key in record) {
-				const value = String(record[key]).replace("<", "&lt;").replace(">", "&gt;")
-					.replace("&", "&amp;").replace("'", "&apos;").replace("\"", "&quot;");
+				const value = String(record[key])
+					.replaceAll("&", "&amp;")
+					.replaceAll("<", "&lt;")
+					.replaceAll(">", "&gt;")
+					.replaceAll("'", "&apos;")
+					.replaceAll("\"", "&quot;");
 				elements.push("        <" + key + ">" + value + "</" + key + ">");
 			}
 			return "    <kontakt>\n" + elements.join("\n") + "\n    </kontakt>";
-		}).join("\n") + "</kontakte>\n";
+		}).join("\n") + "\n</kontakte>\n";
 }
 
 const fixALotOfShit = data => {

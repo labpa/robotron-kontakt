@@ -1,6 +1,5 @@
 todo
 	- pflichtenheft noch mal checken
-	- xml export
 	- ma onboarding/ nutzerverwaltung
 	- supabase passwort reset 
 persp.
