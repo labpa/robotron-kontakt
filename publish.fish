@@ -1,4 +1,3 @@
 #!/usr/bin/env fish
-tar -C src -cvz . > site.tar.gz
-hut pages publish -d robotron.srht.site site.tar.gz
-rm site.tar.gz
+cd src
+scp -r * root@hub.nojs.de:/var/www/robotron-kontakt.nojs.de/
