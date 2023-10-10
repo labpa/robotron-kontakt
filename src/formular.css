@@ -60,7 +60,16 @@
 	min-width: 20%;
 }
 
+.einwilligungContainer {
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
 @media screen and (max-width: 600px) {
   .row {
 	display: block;
   }
+}

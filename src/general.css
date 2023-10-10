@@ -3,7 +3,7 @@
     --second-color: #a2a8d3;
     --third-color: #38598b;
     --fourth-color: #113f67;
-	
+
 	--signal-color: #004177;
     --input-bgcolor: #f2f2f2;
 }
@@ -18,7 +18,7 @@ h1 {
 	font-weight: 400;
 	color: var(--signal-color);
 	text-align: center;
-	
+
 }
 .form button {
     text-transform: uppercase;
@@ -38,6 +38,9 @@ h1 {
 }
 
 .footer{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
     text-align: center;
     background-color: var(--first-color);
     padding: 2rem;
