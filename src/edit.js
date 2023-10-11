@@ -5,8 +5,6 @@ import {
     supabase,
 } from "./util.js";
 
-// todo
-
 forceLogin();
 showNavbar("nav#navbar");
 showFooter("footer#footer");

@@ -4,8 +4,6 @@ import {
     showNavbar,
 } from "./util.js";
 
-// todo
-
 showNavbar("nav#navbar");
 showFooter("footer#footer");
 
