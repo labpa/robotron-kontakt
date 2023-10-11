@@ -1,7 +1,7 @@
 export { supabase, forceLogin, createTable , csv , xml, richtigesDatum, fixALotOfShit }
 
 import { createClient } from '@supabase/supabase-js'//'https://esm.sh/@supabase/supabase-js@2';
-	
+
 const supabase = createClient(
 	'https://lqgnahenxkmdkenuxbxw.supabase.co',
 	'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxxZ25haGVueGttZGtlbnV4Ynh3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTUyMDg0NDksImV4cCI6MjAxMDc4NDQ0OX0.XrMlC1LGwKXDw0yg1AqKjzsiUdV-XLsfLEfdSq7gJh0',
@@ -23,6 +23,7 @@ const session = await supabase.auth.getSession();
 
 	const linkInput = function(){
 		const elem = document.createElement("a");
+		if (window.location.href.includes("index.html"))	elem.className += " active";
 		elem.innerText = "Neuer Kontakt";
 		elem.setAttribute("href", "./index.html");
 		return elem;
@@ -30,6 +31,7 @@ const session = await supabase.auth.getSession();
 
 	const linkKontakte = function(){
 		const elem = document.createElement("a");
+		if (window.location.href.includes("kontakte.html"))	elem.className += " active";
 		elem.innerText = "Kontakte";
 		elem.setAttribute("href", "./kontakte.html");
 		return elem;
@@ -37,6 +39,7 @@ const session = await supabase.auth.getSession();
 
 	const linkLogin = function(){
 		const elem = document.createElement("a");
+		if (window.location.href.includes("login.html"))	elem.className += " active";
 		elem.innerText = "Anmelden";
 		elem.setAttribute("href", "./login.html");
 		return elem;
@@ -44,8 +47,9 @@ const session = await supabase.auth.getSession();
 
 	const linkLogout = function(){
 		const elem = document.createElement("a");
+		if (window.location.href.includes("login.html"))	elem.className += " active";
 		elem.innerText = session.data.session?.user.email + " abmelden";
-		elem.setAttribute("href", "a");	
+		elem.setAttribute("href", "a");
 		elem.addEventListener("click", async (ev)=>{
 			ev.preventDefault();
 			const { error } = await supabase.auth.signOut();
@@ -108,7 +112,7 @@ function createTableHead(data, table, isWithViewButton) {
 		thView.appendChild(document.createTextNode("Ansehen"));
 		trhead.appendChild(thView);
 	}
-	
+
 	for (const key in data[0]) {
 		const th = document.createElement("th");
 		th.appendChild(document.createTextNode(key));
@@ -156,7 +160,7 @@ function richtigesDatum(scheißdatum) {
 		"."+leadingZero(String(date.getMonth()+1))+
 		"."+String(date.getFullYear())+
 		includesTime(date, scheißdatum.length);
-	
+
 	return deutschesDatum;
  }
 function leadingZero(string) {
@@ -171,7 +175,7 @@ function includesTime(date, length) {
 		return "";
 	}
 }
- 
+
 function wochentag(n) {
 	if(n===0){
 		return "So";

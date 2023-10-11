@@ -40,11 +40,12 @@ table th {
     outline: 0;
     background: var(--fourth-color);
     border: 0;
-	padding: 0.5rem;
+		padding: 0.5rem;
     color: #FFFFFF;
     -webkit-transition: all 0.3s ease;
     transition: all 0.3s ease;
     cursor: pointer;
+		min-height: 2rem;
 }
 
 .smallButton:hover,.smallButton:active,.smallButton:focus {
@@ -62,7 +63,14 @@ table th {
 .searchContainer {
 	display: flex;
 }
-
+#container {
+	transform: rotateX(180deg);
+}
+.scrollbar {
+	margin-top: 1rem;
+	overflow-x: auto;
+	transform: rotateX(180deg);
+}
 
 
 
