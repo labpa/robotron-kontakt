@@ -115,7 +115,7 @@ function createTableHead(data, table, isWithViewButton) {
 
 	for (const key in data[0]) {
 		const th = document.createElement("th");
-		th.appendChild(document.createTextNode(key));
+		th.appendChild(document.createTextNode(key.replaceAll("_", " ")));
 		trhead.appendChild(th);
 	}
 	table.appendChild(thead);
@@ -225,13 +225,14 @@ function xml(data) {
 	return "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<kontakte>\n" +
 		data.map(record => {
 			const elements = [];
-			for (const key in record) {
+			for (let key in record) {
 				const value = String(record[key])
 					.replaceAll("&", "&amp;")
 					.replaceAll("<", "&lt;")
 					.replaceAll(">", "&gt;")
 					.replaceAll("'", "&apos;")
 					.replaceAll("\"", "&quot;");
+				key = key.replaceAll(" ", "_");	// XML does not allow whitespace in tags
 				elements.push("        <" + key + ">" + value + "</" + key + ">");
 			}
 			return "    <kontakt>\n" + elements.join("\n") + "\n    </kontakt>";
@@ -252,15 +253,15 @@ const fixAllHeaderNames = data => {
 	return data.map(oldRecord =>{
 		return Object.fromEntries(
 			Object.entries(oldRecord).map(([key, value]) => {
-				if (key === "created_at") return ["Erstellt an", value];
+				if (key === "created_at") return ["Erstellt_An", value];
 				if (key === "Name") return ["Nachname", value];
 				if (key === "Mobiltelefon") return ["Mobil", value];
 				if (key === "Gewuenschte_Weiterbildung") return ["Weiterbildung", value];
 				if (key === "Gewuenschter_Starttermin") return ["Starttermin", value];
 				if (key === "Zustellung_Angebot") return ["Angebot", value];
 				if (key === "Creator") return ["Mitarbeiter", value];
-				if (key === "updated_at") return ["Bearbeitet an", value];
-				return [key.replaceAll('_', ' '), value];
+				if (key === "updated_at") return ["Bearbeitet_An", value];
+				return [key, value];
 			})
 		);
 	})
