@@ -1,9 +1,10 @@
 <!doctype html>
 <html lang="de">
+
 <head>
 	<meta charset="utf-8" />
 	<title>Robotron Kontaktformular - bearbeiten</title>
-	<script src="edit.js" type="module" ></script>
+	<script src="edit.js" type="module"></script>
 	<link rel="stylesheet" href="./general.css" />
 	<link rel="stylesheet" href="./navbar.css" />
 	<link rel="stylesheet" href="./formular.css" />
@@ -14,7 +15,7 @@
 	<h1>Kontakt bearbeiten</h1>
 
 	<form class="form" id="form-edit">
-		<div class="row" >
+		<div class="row">
 			<div>
 				<label for="Name">Name: </label>
 				<input type="text" id="Name" name="Name" required />
@@ -30,7 +31,7 @@
 			<input type="text" id="Straße" name="Straße" required />
 		</div>
 
-		<div class="row" >
+		<div class="row">
 			<div>
 				<label for="PLZ">PLZ: </label>
 				<input type="text" id="PLZ" name="PLZ" required />
@@ -41,7 +42,7 @@
 			</div>
 		</div>
 
-		<div class="row" >
+		<div class="row">
 			<div>
 				<label for="Festnetz">Festnetz: </label>
 				<input type="tel" id="Festnetz" name="Festnetz" />
@@ -74,17 +75,17 @@
 		</div>
 
 		<legend>Zustellung:</legend>
-		<div class="radioContainer" >
-			<div class="radioButton" >
+		<div class="radioContainer">
+			<div class="radioButton">
 				<input type="radio" id="Zustellung-E-Mail" name="Zustellung_Angebot" value="E-Mail" checked />
 				<label for="Zustellung-E-Mail">E-Mail</label>
 			</div>
-			<div class="radioButton" >
+			<div class="radioButton">
 				<input type="radio" id="Zustellung-Brief" name="Zustellung_Angebot" value="Brief" />
 				<label for="Zustellung-Brief">Brief</label>
 			</div>
-			<div class="radioButton" >
-				<input  type="radio" id="Zustellung-Abholung" name="Zustellung_Angebot" value="Abholung" />
+			<div class="radioButton">
+				<input type="radio" id="Zustellung-Abholung" name="Zustellung_Angebot" value="Abholung" />
 				<label for="Zustellung-Abholung">Abholung</label>
 			</div>
 		</div>
@@ -105,4 +106,5 @@
 	</form>
 	<footer id="footer" class="footer"></footer>
 </body>
+
 </html>
