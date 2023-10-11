@@ -1,5 +1,5 @@
 import {
-    defineConfig
+    defineConfig,
 } from "vite";
 
 export default defineConfig({
