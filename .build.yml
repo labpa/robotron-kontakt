@@ -1,0 +1,19 @@
+image: alpine/edge
+oauth: pages.sr.ht/PAGES:RW
+packages:
+  - hut
+  - npm
+environment:
+  site: robotron.srht.site
+tasks:
+  - getdependencies: |
+      cd $site
+      npm install
+  - build: |
+      cd $site
+      npm run build
+  - package: |
+      cd $site
+      tar -C dist -cvz . > ../site.tar.gz
+  - upload: |
+      hut pages publish -d $site site.tar.gz

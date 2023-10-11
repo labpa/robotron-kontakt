@@ -1,6 +1,6 @@
 export { supabase, forceLogin, createTable , csv , xml, richtigesDatum, fixALotOfShit }
 
-import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
+import { createClient } from '@supabase/supabase-js'//'https://esm.sh/@supabase/supabase-js@2';
 	
 const supabase = createClient(
 	'https://lqgnahenxkmdkenuxbxw.supabase.co',
