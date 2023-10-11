@@ -34,7 +34,7 @@ const xml = data =>
             .replaceAll("'", "&apos;").replaceAll("\"", "&quot;")
             .replaceAll(" ", "_").replaceAll("\t", "_").replaceAll("\n", "_") +
             "</" + kv[0] + ">").join("\n");
-        return "\t<kontakt>\n" + elements + "\n    </kontakt>"
+        return "\t<kontakt>\n" + elements + "\n\t</kontakt>"
     }).join("\n") + "\n</kontakte>\n";
 
 const forceLogin = async () => {
@@ -63,7 +63,7 @@ const showNavbar = async selector => {
             elem.textContent = "Kontakte";
             elem.setAttribute("href", "./kontakte.html");
             if (window.location.href.includes("kontakte.html")) {
-                elem.className += " active";
+                elem.classList.add("active");
             }
             return elem;
         })());
@@ -78,7 +78,7 @@ const showNavbar = async selector => {
                 window.open("./login.html", "_self");
             };
             if (window.location.href.includes("login.html")) {
-                elem.className += " active";
+                elem.classList.add("active");
             }
             return elem;
         })());
@@ -88,7 +88,7 @@ const showNavbar = async selector => {
             elem.textContent = "Anmelden";
             elem.setAttribute("href", "./login.html");
             if (window.location.href.includes("login.html")) {
-                elem.className += " active";
+                elem.classList.add("active");
             }
             return elem;
         })());
@@ -137,27 +137,27 @@ const createTable = (selector, data, withViewButton = true) => {
 
         // table body
         const tbody = document.createElement("tbody");
-        for (const row of data) {
+        table.appendChild(tbody);
+        for (const record of data) {
             const tr = document.createElement("tr");
+            tbody.appendChild(tr);
             if (withViewButton) {
                 const button = document.createElement("button");
                 button.textContent = "Details";
                 button.classList.add("smallButton");
-                button.onclick = () => window.open("./view.html?id=" + row.id, "_self");
+                button.onclick = () => window.open("./view.html?id=" + record.id, "_self");
                 const td = document.createElement("td");
                 td.appendChild(button);
                 tr.appendChild(td);
             }
-            for (const key in row) {
-                const value = row[key];
+            for (const key in record) {
+                const value = record[key];
                 const td = document.createElement("td");
                 td.textContent = value || "null";
                 td.dataset.label = key;
                 tr.appendChild(td);
             }
-            tbody.appendChild(tr);
         }
-        table.appendChild(tbody);
     }
 }
 

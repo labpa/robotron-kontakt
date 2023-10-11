@@ -26,9 +26,9 @@ document.querySelector("form#formSearch").onsubmit = ev => {
     const searchInput = document.querySelector("input#searchInput").value.toLowerCase().split(" ");
     for (const i in searchInput) {
         const word = searchInput[i].trim();
-        filteredData = filteredData.filter(row => {
-            for (const i in row) {
-                const cell = String(row[i]).toLowerCase();
+        filteredData = filteredData.filter(record => {
+            for (const i in record) {
+                const cell = String(record[i]).toLowerCase();
                 if (cell.includes(word)) {
                     return true;
                 }
