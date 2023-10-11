@@ -76,7 +76,7 @@ table th {
 
 
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 1100px) {
 	table {
 		border: 0;
 		width: 100%;

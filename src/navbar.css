@@ -40,7 +40,7 @@
   color: var(--first-color) !important;
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 1100px) {
   .navbar a {
     float: none;
     display: block;

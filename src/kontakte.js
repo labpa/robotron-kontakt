@@ -1,9 +1,10 @@
-import { createTable, forceLogin, supabase, csv, xml, richtigesDatum, fixALotOfShit } from "./util.js";
+import { createTable, forceLogin, supabase, csv, xml, richtigesDatum, fixAllDates, fixAllHeaderNames } from "./util.js";
 
 forceLogin();
 let { data, error } = await supabase.from("Kontakte").select("*");
 data.sort((a,b) => a.id - b.id);
-data = fixALotOfShit(data);
+data = fixAllDates(data);
+data = fixAllHeaderNames(data);
 createTable(data);
 
 let angezeigeData = data;
@@ -12,7 +13,7 @@ document.querySelector("form#formSearch").onsubmit = ev => {
     let filteredData = data;
     const searchInput = document.querySelector("input#searchInput").value.toLowerCase().split(" ");
     for (const i in searchInput) {
-        const word = searchInput[i].trim(); 
+        const word = searchInput[i].trim();
         filteredData = filteredData.filter(row => {
             for (const i in row){
                 const cell = String(row[i]).toLowerCase();

@@ -1,4 +1,4 @@
-export { supabase, forceLogin, createTable , csv , xml, richtigesDatum, fixALotOfShit }
+export { supabase, forceLogin, createTable , csv , xml, richtigesDatum, fixAllDates, fixAllHeaderNames }
 
 import { createClient } from '@supabase/supabase-js'//'https://esm.sh/@supabase/supabase-js@2';
 
@@ -238,7 +238,7 @@ function xml(data) {
 		}).join("\n") + "\n</kontakte>\n";
 }
 
-const fixALotOfShit = data => {
+const fixAllDates = data => {
 	return data.map(record => {
 		record.created_at = richtigesDatum(record.created_at);
 		record.updated_at = richtigesDatum(record.updated_at);
@@ -246,4 +246,22 @@ const fixALotOfShit = data => {
 		record.Gewuenschter_Starttermin = richtigesDatum(record.Gewuenschter_Starttermin);
 		return record;
 	});
+}
+
+const fixAllHeaderNames = data => {
+	return data.map(oldRecord =>{
+		return Object.fromEntries(
+			Object.entries(oldRecord).map(([key, value]) => {
+				if (key === "created_at") return ["Erstellt an", value];
+				if (key === "Name") return ["Nachname", value];
+				if (key === "Mobiltelefon") return ["Mobil", value];
+				if (key === "Gewuenschte_Weiterbildung") return ["Weiterbildung", value];
+				if (key === "Gewuenschter_Starttermin") return ["Starttermin", value];
+				if (key === "Zustellung_Angebot") return ["Angebot", value];
+				if (key === "Creator") return ["Mitarbeiter", value];
+				if (key === "updated_at") return ["Bearbeitet an", value];
+				return [key.replaceAll('_', ' '), value];
+			})
+		);
+	})
 }

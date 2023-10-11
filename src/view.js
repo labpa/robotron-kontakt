@@ -1,4 +1,4 @@
-import { supabase, forceLogin, createTable, fixALotOfShit } from "./util.js";
+import { supabase, forceLogin, createTable, fixAllDates, fixAllHeaderNames } from "./util.js";
 forceLogin();
 
 
@@ -22,7 +22,8 @@ const btnEdit = function(){
 const url = new URL(window.location);
 const id = url.searchParams.get("id");
 let { data, error } = await supabase.from('Kontakte').select('*').eq('id', id);
-data = fixALotOfShit(data);
+data = fixAllDates(data);
+data = fixAllHeaderNames(data);
 
 let container = document.querySelector("#buttonContainer");
 container.appendChild(btnDelete);
