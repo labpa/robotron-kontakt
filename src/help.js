@@ -1,1 +1,7 @@
-import {} from "./util.js";
+import {
+    showFooter,
+    showNavbar,
+} from "./util.js";
+
+showNavbar("nav#navbar");
+showFooter("footer#footer");

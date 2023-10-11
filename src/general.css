@@ -1,25 +1,29 @@
-:root{
+:root {
     --first-color: #e5ecf1;
     --second-color: #a2a8d3;
     --third-color: #38598b;
     --fourth-color: #113f67;
 
-	  --signal-color: #004177;
+    --signal-color: #004177;
     --input-bgcolor: #f2f2f2;
 }
+
 html * {
-	font-family: verdana, sans-serif;
-	color: black;
+    font-family: verdana, sans-serif;
+    color: black;
 }
-body{
+
+body {
     background-color: #FFFFFF;
 }
+
 h1 {
-	font-weight: 400;
-	color: var(--signal-color);
-	text-align: center;
+    font-weight: 400;
+    color: var(--signal-color);
+    text-align: center;
 
 }
+
 .form button {
     text-transform: uppercase;
     outline: 0;
@@ -33,11 +37,14 @@ h1 {
     transition: all 0.3s ease;
     cursor: pointer;
 }
-.form button:hover,.form button:active,.form button:focus {
+
+.form button:hover,
+.form button:active,
+.form button:focus {
     background: var(--third-color);
 }
 
-.footer{
+.footer {
     display: flex;
     align-items: center;
     justify-content: space-evenly;
@@ -45,4 +52,36 @@ h1 {
     background-color: var(--first-color);
     padding: 2rem;
     margin-top: 3rem;
+}
+
+#navbar {
+    width: 100%;
+    background-color: var(--first-color);
+    overflow: auto;
+    border-bottom: solid 1px var(--second-color);
+    border-top: solid 1px var(--signal-color);
+}
+
+#navbar a {
+    float: left;
+    padding: 12px;
+    color: var(--signal-color);
+    text-decoration: none;
+    font-size: 17px;
+}
+
+#navbar a:hover {
+    background-color: #6dcf18;
+}
+
+.active {
+    background-color: var(--fourth-color);
+    color: var(--first-color) !important;
+}
+
+@media screen and (max-width: 1100px) {
+    #navbar a {
+        float: none;
+        display: block;
+    }
 }

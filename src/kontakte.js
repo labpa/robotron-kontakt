@@ -1,26 +1,25 @@
 import {
     createTable,
     csv,
-    fixAllDates,
-    fixAllHeaderNames,
     forceLogin,
-    richtigesDatum,
+    showFooter,
+    showNavbar,
     supabase,
+    withReadableDates,
+    withReadableKeys,
     xml,
 } from "./util.js";
 
 forceLogin();
+showNavbar("nav#navbar");
+showFooter("footer#footer");
 
-let {
-    data,
-    error,
-} = await supabase.from("Kontakte").select("*");
+let { data, error } = await supabase.from("Kontakte").select("*");
 data.sort((a, b) => a.id - b.id);
-data = fixAllDates(data);
-data = fixAllHeaderNames(data);
-createTable(data);
-
-let angezeigeData = data;
+data = withReadableDates(data);
+data = withReadableKeys(data);
+let tableData = data;
+createTable("div#container", tableData);
 document.querySelector("form#formSearch").onsubmit = ev => {
     ev.preventDefault();
     let filteredData = data;
@@ -37,14 +36,14 @@ document.querySelector("form#formSearch").onsubmit = ev => {
             return false;
         });
     }
-    createTable(filteredData);
-    angezeigeData = filteredData;
+    createTable("div#container", filteredData);
+    tableData = filteredData;
 }
 
 document.querySelector("button#csv").onclick = ev => {
     const link = document.createElement("a");
-    const BOM = new Uint8Array([0xEF, 0xBB, 0xBF]);
-    const file = new Blob([BOM, csv(angezeigeData)]);
+    const bom = new Uint8Array([0xEF, 0xBB, 0xBF]);
+    const file = new Blob([bom, csv(tableData)]);
     link.href = URL.createObjectURL(file);
     link.download = "kontakte.csv";
     link.click();
@@ -53,8 +52,8 @@ document.querySelector("button#csv").onclick = ev => {
 
 document.querySelector("button#xml").onclick = ev => {
     const link = document.createElement("a");
-    const BOM = new Uint8Array([0xEF, 0xBB, 0xBF]);
-    const file = new Blob([BOM, xml(angezeigeData)]);
+    const bom = new Uint8Array([0xEF, 0xBB, 0xBF]);
+    const file = new Blob([bom, xml(tableData)]);
     link.href = URL.createObjectURL(file);
     link.download = "kontakte.xml";
     link.click();

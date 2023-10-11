@@ -1,6 +1,13 @@
 import {
     supabase,
+    showFooter,
+    showNavbar,
 } from "./util.js";
+
+// todo
+
+showNavbar("nav#navbar");
+showFooter("footer#footer");
 
 const contactForm = document.querySelector("#form-insert");
 const submitButton = document.querySelector("#btn-submit");
@@ -19,12 +26,7 @@ contactForm.onsubmit = async (ev) => {
     if (session.data.session !== null) {
         submitData["Creator"] = session.data.session.user.email;
     }
-    const {
-        data,
-        error,
-    } = await supabase
-        .from('Kontakte')
-        .insert([submitData]);
+    const { data, error } = await supabase.from('Kontakte').insert([submitData]);
     contactForm.reset();
     contactForm.onsubmit = tmp;
     submitButton.disabled = false;

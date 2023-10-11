@@ -1,43 +1,37 @@
 import {
     createTable,
-    fixAllDates,
-    fixAllHeaderNames,
     forceLogin,
+    showFooter,
+    showNavbar,
     supabase,
+    withReadableDates,
+    withReadableKeys,
 } from "./util.js";
 
 forceLogin();
+showNavbar("nav#navbar");
+showFooter("footer#footer");
 
-const btnDelete = function() {
-    const elem = document.createElement("button");
-    elem.appendChild(document.createTextNode("Löschen"));
-    elem.addEventListener("click", async function() {
-        const {
-            error
-        } = await supabase.from('Kontakte').delete().eq('id', id);
+const id = (new URL(window.location)).searchParams.get("id");
+
+let { data, error } = await supabase.from('Kontakte').select('*').eq('id', id);
+data = withReadableDates(data);
+data = withReadableKeys(data);
+createTable("div#container", data, false);
+
+let buttonContainer = document.querySelector("#buttonContainer");
+buttonContainer.appendChild(function() {
+    const button = document.createElement("button");
+    button.textContent = "Löschen";
+    button.onclick = async () => {
+        const { error } = await supabase.from('Kontakte').delete().eq('id', id);
         window.open("./kontakte.html", "_self");
-    });
-    return elem;
-}();
-
-const btnEdit = function() {
-    const elem = document.createElement("button");
-    elem.innerText = "Bearbeiten";
-    elem.addEventListener("click", () => window.open("./edit.html?id=" + id, "_self"));
-    return elem;
-}();
-
-const url = new URL(window.location);
-const id = url.searchParams.get("id");
-let {
-    data,
-    error
-} = await supabase.from('Kontakte').select('*').eq('id', id);
-data = fixAllDates(data);
-data = fixAllHeaderNames(data);
-
-let container = document.querySelector("#buttonContainer");
-container.appendChild(btnDelete);
-container.appendChild(btnEdit);
-
-createTable(data, false);
+    };
+    return button;
+}());
+buttonContainer.appendChild(function() {
+    const button = document.createElement("button");
+    button.textContent = "Bearbeiten";
+    button.onclick = () => window.open("./edit.html?id=" + id, "_self");
+    return button;
+}());

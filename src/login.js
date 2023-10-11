@@ -1,27 +1,30 @@
 import {
+    showFooter,
+    showNavbar,
     supabase,
 } from "./util.js";
 
+showNavbar("nav#navbar");
+showFooter("footer#footer");
+
 const session = await supabase.auth.getSession();
-const helloTxt = document.querySelector("#hellotxt");
-helloTxt.innerText = session.data.session ? "Sie sind angemeldet." : "Sie sind nicht angemeldet.";
-const loginForm = document.querySelector("#form-login");
-const submitButton = document.querySelector("#btn-submit");
-loginForm.onsubmit = async ev => {
+
+document.querySelector("#anmeldestatus").textContent =
+    session.data.session ? "Sie sind bereits angemeldet." : "Sie sind nicht angemeldet.";
+
+document.querySelector("#form-login").onsubmit = async ev => {
     ev.preventDefault();
+    const submitButton = document.querySelector("#btn-submit");
     submitButton.disabled = true;
     const formData = new FormData(ev.target);
-    const {
-        data,
-        error,
-    } = await supabase.auth.signInWithPassword({
+    const { data, error } = await supabase.auth.signInWithPassword({
         email: formData.get("E-Mail"),
         password: formData.get("Password"),
     });
     submitButton.disabled = false;
-    if (error != null) {
+    if (error) {
         alert(error);
-        return;
+    } else {
+        window.open("./index.html", "_self");
     }
-    window.open("./index.html", "_self");
 }
