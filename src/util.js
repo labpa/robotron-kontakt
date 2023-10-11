@@ -76,7 +76,6 @@ const linkDokumentation = function(){
 	elem.setAttribute("href", "./help.html");
 	return elem;
 }();
-console.log(linkImpressum);
 footer.appendChild(linkImpressum);
 footer.appendChild(linkDokumentation);
 
