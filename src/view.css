@@ -92,7 +92,3 @@ table td:last-child {
     gap: 5rem;
     justify-content: flex-end;
 }
-
-.form button {
-    width: 20%;
-}
