@@ -1,9 +1,0 @@
-todo
-	- pflichtenheft noch mal checken
-	- ma onboarding/ nutzerverwaltung
-	- supabase passwort reset 
-persp.
-	- tests
-	- dokumentation
-	- übergabeprotokoll???
-	- ...
