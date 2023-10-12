@@ -4,7 +4,7 @@ import {
 
 export default defineConfig({
     root: "src",
-    base: "/",
+    base: "/robtron-kontakt",
     build: {
         rollupOptions: {
             input: {
