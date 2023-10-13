@@ -49,7 +49,7 @@ const showNavbar = async selector => {
 
     navbar.appendChild((() => {
         const image = document.createElement("img");
-        image.src= "./img/navbarLogo.png";
+        image.src= "./navbarLogo.png";
         image.classList.add("navbarlogo");
         return image;
     })())
