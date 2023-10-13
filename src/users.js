@@ -45,7 +45,7 @@ for (const i in data) {
     const buttonDelete = document.createElement("button");
     buttonDelete.textContent = "Löschen";
     buttonDelete.onclick = async ev => {
-        const { error } = await supabase.from("profiles").delete().eq("id", record["id"]);
+        const { error } = await supabase.from("profiles").delete().eq("email", record["email"]);
         location.reload();
     };
     const tdDelete = document.createElement("td");
