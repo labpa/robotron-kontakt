@@ -70,6 +70,16 @@ const showNavbar = async selector => {
 
         navbar.appendChild((() => {
             const elem = document.createElement("a");
+            elem.textContent = "Mitarbeiter";
+            elem.setAttribute("href", "./users.html");
+            if (window.location.href.includes("users.html")) {
+                elem.classList.add("active");
+            }
+            return elem;
+        })());
+
+        navbar.appendChild((() => {
+            const elem = document.createElement("a");
             elem.textContent = session.data.session.user.email + " abmelden";
             elem.setAttribute("href", "a");
             elem.onclick = async ev => {

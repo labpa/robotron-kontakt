@@ -1,7 +1,16 @@
-import { forceLogin, supabase } from "./util.js";
+import {
+    forceLogin,
+    showFooter,
+    showNavbar,
+    supabase,
+} from "./util.js";
+
 forceLogin();
+showNavbar("nav#navbar");
+showFooter("footer#footer");
+
 const { data, error } = await supabase.from("profiles").select("*");
-data.sort((a,b) => a.email - b.email);
+data.sort((a, b) => a.email - b.email);
 
 const table = document.createElement("table");
 document.querySelector("#container").appendChild(table);
@@ -35,11 +44,10 @@ for (const i in data) {
     }
     const buttonDelete = document.createElement("button");
     buttonDelete.textContent = "Löschen";
-	buttonDelete.onclick = async ev => {
-		const { error } = await supabase.from("profiles").delete().eq("id", record["id"]);
-        // const { data, error } = await supabase.auth.admin.deleteUser(record["id"]);
-		// location.reload();
-	};
+    buttonDelete.onclick = async ev => {
+        const { error } = await supabase.from("profiles").delete().eq("id", record["id"]);
+        location.reload();
+    };
     const tdDelete = document.createElement("td");
     tdDelete.replaceChildren(buttonDelete);
     tr.appendChild(tdDelete);
