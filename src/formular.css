@@ -13,10 +13,13 @@
     border: 0;
     padding: 1rem;
     font-size: 0.9rem;
-	padding-inline: 0px;
+	  /* padding-inline: 0px; */
+    box-sizing: border-box;
 }
 .form input[type=radio] {
     width: 30px;
+    padding-inline: 1rem;
+    padding-block: 0.5rem;
 }
 .form textarea {
     outline: 0;
@@ -24,8 +27,11 @@
     width: 100%;
     border: 0;
     font-size: 0.9rem;
-	resize: none;
-	margin-bottom: 1rem;
+	  resize: none;
+	  margin-bottom: 1rem;
+    box-sizing: border-box;
+    padding-inline: 1rem;
+    padding-block: 0.5rem;
 }
 .form button {
 	min-width: 7rem;
