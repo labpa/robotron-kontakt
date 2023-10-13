@@ -46,6 +46,14 @@ const forceLogin = async () => {
 
 const showNavbar = async selector => {
     const navbar = document.querySelector(selector);
+
+    navbar.appendChild((() => {
+        const image = document.createElement("img");
+        image.src= "./img/navbarLogo.png";
+        image.classList.add("navbarlogo");
+        return image;
+    })())
+
     navbar.appendChild((() => {
         const elem = document.createElement("a");
         elem.textContent = "Neuer Kontakt";
