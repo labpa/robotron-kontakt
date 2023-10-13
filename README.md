@@ -2,4 +2,4 @@
 
 preview page: supabase might be inactive after 7 days:
 
-https://labpa.github.io/robotron-kontakt
+https://labpa.github.io/robotron-kontakt/index.html
