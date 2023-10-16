@@ -45,6 +45,11 @@ for (const i in data) {
     const buttonDelete = document.createElement("button");
     buttonDelete.textContent = "Löschen";
     buttonDelete.onclick = async ev => {
+        const session = await supabase.auth.getSession();
+        if (record["email"] == session.data.session.user.email) {
+            alert("Sie können nicht ihr eigenes Konto löschen!");
+            return;
+        }
         const { error } = await supabase.from("profiles").delete().eq("email", record["email"]);
         location.reload();
     };
