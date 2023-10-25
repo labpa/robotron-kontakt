@@ -17,9 +17,12 @@ document.querySelector("#form-login").onsubmit = async ev => {
     const submitButton = document.querySelector("#btn-submit");
     submitButton.disabled = true;
     const formData = new FormData(ev.target);
-    const { data, error } = await supabase.auth.signInWithPassword({
+    const { data, error } = await supabase.auth.signInWithOtp({
         email: formData.get("E-Mail"),
-        password: formData.get("Password"),
+        options: {
+            emailRedirectTo: "https://labpa.github.io/robotron-kontakt"
+        }
+        
     });
     submitButton.disabled = false;
     if (error) {
