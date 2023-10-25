@@ -22,7 +22,6 @@ document.querySelector("#form-login").onsubmit = async ev => {
         options: {
             emailRedirectTo: "https://labpa.github.io/robotron-kontakt"
         }
-        
     });
     submitButton.disabled = false;
     if (error) {
