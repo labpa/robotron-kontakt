@@ -10,7 +10,7 @@ showFooter("footer#footer");
 const session = await supabase.auth.getSession();
 
 document.querySelector("#anmeldestatus").textContent =
-    session.data.session ? "Sie sind bereits angemeldet." : "Sie sind nicht angemeldet.";
+    session.data.session ? "Sie sind bereits angemeldet." : "";
 
 document.querySelector("#form-login").onsubmit = async ev => {
     ev.preventDefault();
@@ -23,10 +23,13 @@ document.querySelector("#form-login").onsubmit = async ev => {
             emailRedirectTo: "https://labpa.github.io/robotron-kontakt"
         }
     });
+    const error = null;
     submitButton.disabled = false;
     if (error) {
         alert(error);
     } else {
-        window.open("./index.html", "_self");
+        document.querySelector("div.login-form").replaceWith(
+            document.createTextNode("Um die Anmeldung abzuschließen, folgen Sie dem Anmelde-Link, den wir Ihnen per E-Mail gesendet haben.")
+        );
     }
 }
